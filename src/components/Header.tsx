@@ -8,7 +8,7 @@ import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
 // material ui
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Grid from '@material-ui/core/Grid';
+import Grid, { GridSize } from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -17,7 +17,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
 import Icon from '@material-ui/core/Icon';
-import withWidth, { isWidthDown } from '@material-ui/core/withWidth';
+import withWidth, { WithWidthProps } from '@material-ui/core/withWidth';
+
+import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 
 const styles = createStyles({
     root: {
@@ -134,7 +136,7 @@ const RightAppBar = withStyles(rightAppBarStyles)(
     },
 );
 
-const getXsOfGridItemFromBreakpoint = (width) => {
+const getXsOfGridItemFromBreakpoint = (width: Breakpoint): GridSize => {
     switch (width) {
         case 'xs':
             return 3;
@@ -146,13 +148,14 @@ const getXsOfGridItemFromBreakpoint = (width) => {
             return 7;
         case 'xl':
             return 8;
+        default:
+            return 'auto';
     }
 };
-class Header extends React.Component<WithStyles<typeof styles>, {}> {
+class Header extends React.Component<(WithStyles<typeof styles> & WithWidthProps), {}> {
     public render() {
         const classes = this.props.classes;
 
-        console.log(this.props.width);
         return (
             <div className={classes.root}>
                 <AppBar position="static" color="default">
