@@ -75,6 +75,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^1.4.2",
+    "moment": "^2.22.2",
     "tslint-config-airbnb": "^5.9.2",
     "typeface-roboto": "0.0.54"
   },
