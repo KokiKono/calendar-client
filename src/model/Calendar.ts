@@ -1,14 +1,30 @@
 /**
  * Created by kokikono on 2018/08/04.
  */
-import moment from 'moment';
+const moment = require('moment');
 
-export default Calendar {
-    const moment = moment();
+class Calendar {
 
+    moment: any;
 
+    constructor(date: Date) {
+        this.moment = moment(date);
+    }
 
-    const calendarList() {
-        let result = [];
+    monthCalendar(): any {
+        const result = [];
+        this.moment.day(0);
+        for (let rowCounter = 0; rowCounter < 5; rowCounter += 1) {
+            const row = [];
+            for (let colCounter = 0; colCounter < 7; colCounter += 1) {
+                row.push(Number(this.moment.format('D')));
+                this.moment.add(1, 'days');
+            }
+            result.push(row);
+        }
+        console.log(result);
+        return result;
     }
 }
+
+export default Calendar;
