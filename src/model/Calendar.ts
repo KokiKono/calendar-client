@@ -5,20 +5,26 @@ const moment = require('moment');
 
 class Calendar {
 
-    moment: any;
+    moment: moment.Moment;
+
+    constructor() {
+        this.moment = moment();
+    }
 
     constructor(date: Date) {
         this.moment = moment(date);
     }
 
-    monthCalendar(): any {
+    monthCalendar(): int[] {
         const result = [];
-        this.moment.day(0);
+        const privateMoment = this.moment;
+        privateMoment.date(0);
+        privateMoment.day(0);
         for (let rowCounter = 0; rowCounter < 5; rowCounter += 1) {
             const row = [];
             for (let colCounter = 0; colCounter < 7; colCounter += 1) {
-                row.push(Number(this.moment.format('D')));
-                this.moment.add(1, 'days');
+                row.push(Number(privateMoment.format('D')));
+                privateMoment.add(1, 'days');
             }
             result.push(row);
         }
